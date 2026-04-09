@@ -28,14 +28,20 @@
 
         button {
             padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
+            margin-top: 10px;
             border: none;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #218838;
+        #trackBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #resetBtn {
+            background-color: #dc3545;
+            color: white;
+            display: none; /* hidden initially */
         }
 
         #result {
@@ -54,7 +60,8 @@
     <input type="number" id="calories" placeholder="Enter calories burned"><br>
     <input type="number" id="workout" placeholder="Workout time (minutes)"><br>
 
-    <button onclick="calculate()">Track</button>
+    <button id="trackBtn" onclick="calculate()">Track</button>
+    <button id="resetBtn" onclick="resetForm()">Reset</button>
 
     <div id="result"></div>
 </div>
@@ -80,8 +87,14 @@ function calculate() {
     // Fitness logic
     if (steps >= 10000) {
         message = "🎉 Goal Achieved!";
+        
+        // Show reset button ONLY when goal achieved
+        document.getElementById("resetBtn").style.display = "inline-block";
     } else {
         message = "💪 Keep Going!";
+        
+        // Hide reset button if goal not achieved
+        document.getElementById("resetBtn").style.display = "none";
     }
 
     // Display result
@@ -91,7 +104,18 @@ function calculate() {
         "Workout Time: " + workout + " mins<br>" +
         message;
 }
+
+// Reset function
+function resetForm() {
+    document.getElementById("steps").value = "";
+    document.getElementById("calories").value = "";
+    document.getElementById("workout").value = "";
+    document.getElementById("result").innerHTML = "";
+
+    // Hide reset button again
+    document.getElementById("resetBtn").style.display = "none";
+}
 </script>
 
 </body>
-      </html>
+</html>
