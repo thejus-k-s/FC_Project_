@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Fitness Tracker</h2>
+
+    <input type="number" id="steps" placeholder="Enter steps"><br>
+    <input type="number" id="calories" placeholder="Enter calories burned"><br>
+    <input type="number" id="workout" placeholder="Workout time (minutes)"><br>
+
+    <button onclick="calculate()">Track</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculate() {
+    let steps = document.getElementById("steps").value;
+    let calories = document.getElementById("calories").value;
+    let workout = document.getElementById("workout").value;
+
+    // Validation
+    if (steps === "" || calories === "" || workout === "") {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    steps = parseInt(steps);
+    calories = parseInt(calories);
+    workout = parseInt(workout);
+
+    let message = "";
+
+    // Fitness logic
+    if (steps >= 10000) {
+        message = "🎉 Goal Achieved!";
+    } else {
+        message = "💪 Keep Going!";
+    }
+
+    // Display result
+    document.getElementById("result").innerHTML =
+        "Steps: " + steps + "<br>" +
+        "Calories: " + calories + "<br>" +
+        "Workout Time: " + workout + " mins<br>" +
+        message;
+}
+</script>
+
+</body>
+      </html>
